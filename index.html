@@ -1,0 +1,104 @@
+<!-- index.html
+     Made by Thomas Simon
+     Spring 2020
+-->
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Quick Pick</title>
+<style>
+  body {font-family: "Helvetica";}
+  h1 {background: #ff5454;
+      text-align:center;
+      padding:10px;
+      font-style:italic;}
+  .container {  border-style: solid;
+                border-width: 5px;
+                margin-left:10%;
+                margin-right:10%;
+                border-color:black;
+                padding:2%;
+                text-align:center;}
+</style>
+</head>
+
+<body>
+	<h1>Are My Numbers Amicable?</h1>
+  <div class="container">
+  <form name="ballform">
+    <p>Number One: </p><input type="number" id="num1" value="220">
+    <p>Number Two: </p><input type="number" id="num2" value="284">
+    <br><br><button onclick="isAmicable()">Is Amicable?</button>
+  </form>
+  </div>
+  <br>
+	<script language="javascript">
+  function isAmicable(){
+    //Test code for isFactor:
+    //document.write(isFactor(5, 20)); //returns true
+    //document.write(isFactor(3, 20)); //returns false
+    //
+    //Test code for showFactors:
+    //var arr = [1, 2, 3, 4, 5];
+    //showFactors(arr);
+    //Test code for addFactors:
+    //var arr = [1, 2, 3, 4, 5];
+    //document.write(addFactors(arr));
+    //Test code for getFactors:
+    //alert(getFactors(4));
+    var num1 = parseInt(document.getElementById("num1").value);
+    var num2 = parseInt(document.getElementById("num2").value);
+    var num1_sum = addFactors(getFactors(num1));
+    var num2_sum = addFactors(getFactors(num2));
+    if (num1 == num2) {
+      document.write("Numbers are amicable!");
+    } else if (num1 == num2_sum && num2 == num1_sum){
+      document.write("Numbers are amicable!");
+    } else {
+      ocument.write("Numbers are NOT amicable!");
+    }
+  }
+  function isFactor(num, testnum){
+    if ((testnum % num) == 0){
+      return true;
+    }
+    return false;
+  }
+  function showFactors(arr){
+    document.write("Factors: ");
+    for (var i = 0; i < arr.length; i++){
+      document.write(arr[i] + " ");
+    }
+    document.write("<br>");
+  }
+  function addFactors(arr){
+    var count = 0;
+    for (var i = 0; i < arr.length; i++){
+      count += arr[i];
+    }
+    return count;
+  }
+  function getFactors(num){
+    var arr = [];
+    var checks = [];
+    var j = 0;
+    for (var i = 1; i < num; i++){
+      checks[j] = i;
+      j++;
+    }
+    var q = 0;
+    for (var i = 0; i < num; i++){
+      if (isFactor(checks[i], num)){
+        arr[q] = checks[i];
+        q++;
+      }
+    }
+    showFactors(arr);
+    return arr;
+  }
+	</script>
+  <br>
+  <br>
+</body>
+</html>
